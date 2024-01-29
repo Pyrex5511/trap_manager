@@ -9,15 +9,12 @@ use App\Arrival\Http\Controllers\TestController;
 use LibUser\Userapi\Models\User;
 
 
-
 Route::group([
     'prefix' => 'api/v1'
-], function () {
-        Route::group(['middleware' => 'auth'], function () {
-	        Route::get('arrivals', '\App\Arrival\Http\Controllers\ArrivalsController@index');
-            //Route::get('arrivals', [ArrivalsController::class, 'index']);
-            Route::get('arrivals/{id}', '\App\Arrival\Http\Controllers\ArrivalsController@show');
-        });
+], Route::group(['middleware' => 'auth']), function () {
+	Route::get('arrivals', '\App\Arrival\Http\Controllers\ArrivalsController@index');
+    //Route::get('arrivals', [ArrivalsController::class, 'index']);
+    Route::get('arrivals/{id}', '\App\Arrival\Http\Controllers\ArrivalsController@show');
 });
 
       

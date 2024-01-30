@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Trap
+
+# Model Form Field configuration
+form: $/krupka/trapmanager/models/trap/fields.yaml
+
+# Model Class name
+modelClass: Krupka\TrapManager\Models\Trap
+
+# Default redirect location
+defaultRedirect: krupka/trapmanager/traps
+
+# Create page
+create:
+    title: backend::lang.form.create_title
+    redirect: krupka/trapmanager/traps/update/:id
+    redirectClose: krupka/trapmanager/traps
+
+# Update page
+update:
+    title: backend::lang.form.update_title
+    redirect: krupka/trapmanager/traps
+    redirectClose: krupka/trapmanager/traps
+
+# Preview page
+preview:
+    title: backend::lang.form.preview_title

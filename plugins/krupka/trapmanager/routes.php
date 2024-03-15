@@ -12,7 +12,10 @@ Route::group([
         
 	    Route::get('traps', '\Krupka\TrapManager\Http\Controllers\TrapsController@index');
         Route::get('traps/{id}', '\Krupka\TrapManager\Http\Controllers\TrapsController@show');
-        Route::post('trap', 'Krupka\TrapManager\Http\Controllers\TrapsController@save');
+        Route::group(['middleware' => 'auth'], function () {
+            Route::post('trap', 'Krupka\TrapManager\Http\Controllers\TrapsController@save');
+            Route::post('trap/{id}', 'Krupka\TrapManager\Http\Controllers\TrapsController@edit');
+        });
 });
 
       

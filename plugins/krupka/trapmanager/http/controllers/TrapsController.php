@@ -19,6 +19,7 @@ class TrapsController extends Controller
         $trap = Trap::findOrFail($id);
         return TrapResource::make($trap);
     }
+    
     public function save()
     {
         $trap = new Trap();
@@ -26,6 +27,20 @@ class TrapsController extends Controller
         $trap->type = post('type');
         $trap->percentage = post('percentage');
         $trap->count = post('count');
+        $trap->name = post('name');
+        $trap->save();
+
+        return TrapResource::make($trap);
+    }
+    public function edit($id)
+    {
+
+        $trap = Trap::findOrFail($id);
+
+        $trap->type = post('type');
+        $trap->percentage = post('percentage');
+        $trap->count = post('count');
+        $trap->name = post('name');
         $trap->save();
 
         return TrapResource::make($trap);

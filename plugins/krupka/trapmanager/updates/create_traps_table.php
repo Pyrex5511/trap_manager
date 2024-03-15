@@ -15,6 +15,7 @@ class CreateTrapsTable extends Migration
             $table->string('type');
             $table->integer('percentage')->nullable();
             $table->integer('count')->nullable();
+            $table->string('name');
             $table->timestamps();
            
         });

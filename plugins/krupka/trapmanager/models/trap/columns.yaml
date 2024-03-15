@@ -12,3 +12,5 @@ columns:
         label: percento zjedenia
     count:
         label: mysi chytene
+    name:
+        label: meno

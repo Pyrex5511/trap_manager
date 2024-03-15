@@ -11,7 +11,8 @@ class TrapResource extends Resource
             'id' => $this->id,
             'type' => $this->type,
             'percentage'=> $this->percentage,
-            'count'=> $this->count
+            'count'=> $this->count,
+            'name'=> $this->name
         ];
     }
 }

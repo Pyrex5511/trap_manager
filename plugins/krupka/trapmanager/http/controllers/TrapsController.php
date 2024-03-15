@@ -19,15 +19,16 @@ class TrapsController extends Controller
         $trap = Trap::findOrFail($id);
         return TrapResource::make($trap);
     }
-    
+
     public function save()
     {
         $trap = new Trap();
-
+        $user = auth()->user();
         $trap->type = post('type');
+
         $trap->percentage = post('percentage');
         $trap->count = post('count');
-        $trap->name = post('name');
+        $trap->name = $user;
         $trap->save();
 
         return TrapResource::make($trap);
@@ -36,11 +37,12 @@ class TrapsController extends Controller
     {
 
         $trap = Trap::findOrFail($id);
+        $user = auth()->user();
 
         $trap->type = post('type');
         $trap->percentage = post('percentage');
         $trap->count = post('count');
-        $trap->name = post('name');
+        $trap->name =  $user->username;
         $trap->save();
 
         return TrapResource::make($trap);

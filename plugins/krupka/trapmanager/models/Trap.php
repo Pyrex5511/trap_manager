@@ -65,7 +65,9 @@ class Trap extends Model
     public $hasMany = [];
     public $hasOneThrough = [];
     public $hasManyThrough = [];
-    public $belongsTo = [];
+    public $belongsTo = [
+        'user' => 'RainLab\User\Models\User',
+    ];
     public $belongsToMany = [];
     public $morphTo = [];
     public $morphOne = [];

@@ -14,6 +14,13 @@ class TrapsController extends Controller
         
     }
 
+    public function filter()
+    {
+        $date = post('date');
+        $trap = Trap::findOrFail($date);
+        return TrapResource::make($trap);
+    }
+
     public function show($id)
     {
         $trap = Trap::findOrFail($id);
@@ -23,28 +30,24 @@ class TrapsController extends Controller
     public function save()
     {
         $trap = new Trap();
-        $user = auth()->user();
+        
         $trap->type = post('type');
-
         $trap->percentage = post('percentage');
         $trap->count = post('count');
-        $trap->name = $user;
+        $trap->name =  post('name');
         $trap->save();
 
         return TrapResource::make($trap);
     }
     public function edit($id)
     {
-
         $trap = Trap::findOrFail($id);
-        $user = auth()->user();
-
         $trap->type = post('type');
         $trap->percentage = post('percentage');
         $trap->count = post('count');
-        $trap->name =  $user->username;
+        $trap->name =  post('name');
         $trap->save();
-
         return TrapResource::make($trap);
     }
+
 }

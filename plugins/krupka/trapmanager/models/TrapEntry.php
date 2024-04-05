@@ -1,19 +1,18 @@
-<?php namespace Krupka\TrapManager\Models;
+<?php namespace Krupka\Trapmanager\Models;
 
-
-use October\Rain\Database\Model;
-use Krupka\Trapmanager\Models\TrapEntry;
+use Model;
+use Krupka\TrapManager\Models\Trap;
 /**
- * Trap Model
+ * trapEntry Model
  */
-class Trap extends Model
+class TrapEntry extends Model
 {
     use \October\Rain\Database\Traits\Validation;
 
     /**
      * @var string The database table used by the model.
      */
-    public $table = 'krupka_trapmanager_traps';
+    public $table = 'krupka_trapmanager_trap_entries';
 
     /**
      * @var array Guarded fields
@@ -55,20 +54,19 @@ class Trap extends Model
      */
     protected $dates = [
         'created_at',
-        'updated_at'
+        'updated_at',
+        'date'
     ];
 
     /**
      * @var array Relations
      */
     public $hasOne = [];
-    public $hasMany = [
-        'trap_Entries' => TrapEntry::class
-    ];
+    public $hasMany = [];
     public $hasOneThrough = [];
     public $hasManyThrough = [];
     public $belongsTo = [
-        'user' => 'RainLab\User\Models\User',
+        'trap' => array(Trap::class)
     ];
     public $belongsToMany = [];
     public $morphTo = [];

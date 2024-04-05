@@ -6,12 +6,3 @@ columns:
     id:
         label: ID
         searchable: true
-    type:
-        label: typ
-    percentage:
-        label: percento zjedenia
-    count:
-        label: mysi chytene
-    name:
-        label: meno
-    

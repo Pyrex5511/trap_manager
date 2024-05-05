@@ -1,7 +1,10 @@
-<?php namespace Krupka\TrapManager\Http\Controllers;
+<?php
+
+namespace Krupka\TrapManager\Http\Controllers;
 
 use Krupka\TrapManager\Http\Resources\TrapResource;
 use Krupka\TrapManager\Controllers\Traps;
+use Krupka\Trapmanager\Models\TrapEntry;
 use Krupka\TrapManager\Models\Trap;
 use Illuminate\Routing\Controller;
 
@@ -11,43 +14,33 @@ class TrapsController extends Controller
     {
         $traps = Trap::all();
         return TrapResource::collection($traps);
-        
     }
 
-    public function filter()
+    public function filterTraps($id)
     {
-        $date = post('date');
-        $trap = Trap::findOrFail($date);
-        return TrapResource::make($trap);
+        $traps = Trap::findOrFail($id);
+        return TrapResource::collection($traps);
     }
 
-    public function show($id)
-    {
-        $trap = Trap::findOrFail($id);
-        return TrapResource::make($trap);
-    }
 
-    public function save()
-    {
-        $trap = new Trap();
-        
-        $trap->type = post('type');
-        $trap->percentage = post('percentage');
-        $trap->count = post('count');
-        $trap->name =  post('name');
-        $trap->save();
-
-        return TrapResource::make($trap);
-    }
-    public function edit($id)
+    public function show($id, $date)
     {
         $trap = Trap::findOrFail($id);
-        $trap->type = post('type');
-        $trap->percentage = post('percentage');
-        $trap->count = post('count');
-        $trap->name =  post('name');
-        $trap->save();
-        return TrapResource::make($trap);
+
+        $trapEntry = TrapEntry::where('date', $date)->where('trap_id', $id)->firstOrFail();
+        return TrapResource::make($trapEntry);
     }
 
+    public function edit($id, $date)
+    {
+        $trap = Trap::findOrFail($id);
+
+        $trapEntry = TrapEntry::where('date', $date)->where('trap_id', $id)->firstOrFail();
+        $trapEntry->percentage = post('percentage');
+        $trapEntry->count = post('count');
+        $trapEntry->name =  post('name');
+        $trapEntry->save();
+
+        return TrapResource::make($trapEntry);
+    }
 }

@@ -1,7 +1,9 @@
-<?php namespace Krupka\Trapmanager\Updates;
+<?php
+
+namespace Krupka\Trapmanager\Updates;
 
 use Krupka\TrapManager\Models\Trap;
-use Schema;
+use October\Rain\Support\Facades\Schema;
 use October\Rain\Database\Schema\Blueprint;
 use October\Rain\Database\Updates\Migration;
 
@@ -14,7 +16,7 @@ class CreateTrapEntriesTable extends Migration
             $table->increments('id');
             $table->integer('percentage')->nullable();
             $table->integer('count')->nullable();
-            $table->string('name');
+            $table->string('name')->nullable();
             $table->bigInteger("trap_id")->index();
             $table->date('date');
             $table->timestamps();

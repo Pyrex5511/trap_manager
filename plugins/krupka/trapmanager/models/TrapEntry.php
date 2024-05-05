@@ -1,6 +1,6 @@
 <?php namespace Krupka\Trapmanager\Models;
 
-use Model;
+use October\Rain\Database\Model;
 use Krupka\TrapManager\Models\Trap;
 /**
  * trapEntry Model

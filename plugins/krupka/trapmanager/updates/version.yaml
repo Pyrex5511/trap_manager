@@ -1,4 +1,5 @@
 1.0.1: 
 - First version of TrapManager
 - create_traps_table.php
+- create_trap_entries_table.php
 

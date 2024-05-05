@@ -6,3 +6,11 @@ fields:
     id:
         label: ID
         disabled: true
+    percentage:
+        label: percento zjedenia
+    count:
+        label: mysi chytene
+    name:
+        label: meno
+    date:
+        label: datum

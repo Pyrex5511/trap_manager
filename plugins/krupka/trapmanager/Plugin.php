@@ -1,7 +1,13 @@
-<?php namespace Krupka\TrapManager;
+<?php
+
+namespace Krupka\TrapManager;
 
 use Backend;
+use Carbon\Carbon;
+use Krupka\TrapManager\Controllers\Traps;
+use Krupka\TrapManager\Models\Trap;
 use System\Classes\PluginBase;
+use Krupka\Trapmanager\Models\TrapEntry;
 
 /**
  * TrapManager Plugin Information File
@@ -30,7 +36,6 @@ class Plugin extends PluginBase
      */
     public function register()
     {
-
     }
 
     /**
@@ -40,7 +45,6 @@ class Plugin extends PluginBase
      */
     public function boot()
     {
-
     }
 
     /**
@@ -81,7 +85,7 @@ class Plugin extends PluginBase
      */
     public function registerNavigation()
     {
-        
+
 
         return [
             'trapmanager' => [
@@ -93,5 +97,20 @@ class Plugin extends PluginBase
             ],
         ];
     }
-    
+
+    public function registerSchedule($schedule)
+    {
+        $schedule->call(function () {
+
+            $allTraps = Trap::all();
+            foreach ($allTraps as $trap) {
+                $trap_id = $trap->id;
+                $trapEntry = new TrapEntry();
+                $trapEntry->trap_id = $trap_id;
+                $trapEntry->date = Carbon::today();
+
+                $trapEntry->save();
+            }
+        })->daily();
+    }
 }
